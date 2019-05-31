@@ -9,12 +9,9 @@ import { Pelicula } from '../interfaces/interfaces';
 })
 export class Tab1Page implements OnInit {
 
-  peliculasRecientes: Pelicula[];
+  peliculasRecientes: Pelicula[] = [];
 
-  slideOpts = {
-    slidesPerView: 1.2,
-    freeMode: true,
-  };
+  populares: Pelicula[] = [];
 
   constructor( private movieService: MoviesService ) {
 
@@ -23,8 +20,12 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
     this.movieService.getFeature()
     .subscribe( resp => {
-      console.log('Resp', resp);
       this.peliculasRecientes = resp.results;
+    });
+
+    this.movieService.getPopulares()
+    .subscribe( resp => {
+      this.populares = resp.results;
     });
   }
 
