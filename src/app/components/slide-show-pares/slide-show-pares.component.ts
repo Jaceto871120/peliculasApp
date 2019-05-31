@@ -25,7 +25,6 @@ export class SlideShowParesComponent implements OnInit {
   ngOnInit() {}
 
   onClick() {
-    console.log('Cargar mas');
     this.cargarMas.emit();
   }
 

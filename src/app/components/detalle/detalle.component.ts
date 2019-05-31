@@ -28,16 +28,13 @@ export class DetalleComponent implements OnInit {
               private modalController: ModalController) { }
 
   ngOnInit() {
-    console.log('ID', this.id);
     this.moviesService.getPeliculaDetalle(this.id)
                       .subscribe( resp => {
-                        console.log('Detalles', resp);
                         this.pelicula = resp;
                       });
 
     this.moviesService.getActoresPelicula(this.id)
                       .subscribe( resp => {
-                        console.log('Actores', resp);
                         this.actores = resp.cast;
                       });
   }
