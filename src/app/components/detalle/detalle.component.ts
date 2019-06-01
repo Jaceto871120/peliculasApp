@@ -23,6 +23,8 @@ export class DetalleComponent implements OnInit {
 
   ocultar = 150;
 
+  corazon = 'heart-empty';
+
   pelicula: PeliculaDetalle = {};
 
   constructor(private moviesService: MoviesService,
@@ -30,6 +32,10 @@ export class DetalleComponent implements OnInit {
               private dataLocal: DatalocalService) { }
 
   ngOnInit() {
+
+    this.dataLocal.existePelicula(this.id)
+    .then(existe => this.corazon = (existe) ? 'heart' : 'heart-empty');
+
     this.moviesService.getPeliculaDetalle(this.id)
                       .subscribe( resp => {
                         this.pelicula = resp;
@@ -49,6 +55,7 @@ export class DetalleComponent implements OnInit {
   }
 
   favorito() {
-    this.dataLocal.guardarPelicula(this.pelicula);
+    const existe = this.dataLocal.guardarPelicula(this.pelicula);
+    this.corazon = (existe) ? 'heart' : 'heart-empty';
   }
 }
