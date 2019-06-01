@@ -3,7 +3,7 @@
 
     <ion-row>
       <ion-col size="12" *ngFor="let pelicula of pares">
-        <ion-card (click)="onClick2(pelicula.id)">
+        <ion-card mode="md" (click)="onClick2(pelicula.id)">
           <ion-img [src]="pelicula.poster_path | imagen" class="poster"></ion-img>
         </ion-card>
       </ion-col>
